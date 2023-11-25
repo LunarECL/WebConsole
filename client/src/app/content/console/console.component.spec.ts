@@ -8,9 +8,8 @@ describe('ConsoleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConsoleComponent ]
-    })
-    .compileComponents();
+      declarations: [ConsoleComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

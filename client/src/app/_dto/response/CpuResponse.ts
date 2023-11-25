@@ -1,5 +1,5 @@
-import { WebSocketResponse } from "./WebSocketResponse";
+import { WebSocketResponse } from './WebSocketResponse';
 
-export interface CpuResponse extends WebSocketResponse{
-	usage: number;
+export interface CpuResponse extends WebSocketResponse {
+  usage: number;
 }

@@ -1,5 +1,5 @@
 export interface WebSocketResponse {
-	status: number;
-	statusDescription: string;
-	message: string;
+  status: number;
+  statusDescription: string;
+  message: string;
 }

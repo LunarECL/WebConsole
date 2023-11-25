@@ -8,22 +8,17 @@ import { RouterModule } from '@angular/router';
 import { SanitizePipe } from './sanitize.pipe';
 
 @NgModule({
-	exports: [
-		TranslateModule,
-		FormsModule,
-		FontAwesomeModule,
-		NgbModule,
-		ReactiveFormsModule,
-		RouterModule,
-		CommonModule,
-		SanitizePipe
-	],
-	declarations: [
-		SanitizePipe
-	],
-	imports: [
-		TranslateModule,
-		CommonModule
-	]
+  exports: [
+    TranslateModule,
+    FormsModule,
+    FontAwesomeModule,
+    NgbModule,
+    ReactiveFormsModule,
+    RouterModule,
+    CommonModule,
+    SanitizePipe,
+  ],
+  declarations: [SanitizePipe],
+  imports: [TranslateModule, CommonModule],
 })
-export class SharedModule { }
+export class SharedModule {}

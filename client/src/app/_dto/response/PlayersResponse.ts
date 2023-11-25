@@ -1,7 +1,7 @@
-import { WebSocketResponse } from "./WebSocketResponse";
+import { WebSocketResponse } from './WebSocketResponse';
 
 export interface PlayersResponse extends WebSocketResponse {
-	connectedPlayers: number;
-	maxPlayers: number;
-	players: string[];
+  connectedPlayers: number;
+  maxPlayers: number;
+  players: string[];
 }

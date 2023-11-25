@@ -1,5 +1,5 @@
-import { WebSocketResponse } from "./WebSocketResponse";
+import { WebSocketResponse } from './WebSocketResponse';
 
-export interface TpsResponse extends WebSocketResponse{
-	tps: number;
+export interface TpsResponse extends WebSocketResponse {
+  tps: number;
 }

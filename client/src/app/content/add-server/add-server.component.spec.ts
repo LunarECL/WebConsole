@@ -8,9 +8,8 @@ describe('AddServerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddServerComponent ]
-    })
-    .compileComponents();
+      declarations: [AddServerComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
 export interface ServerDto {
-	serverName: string;
-	serverURI: string;
-	serverPassword?: string;
+  serverName: string;
+  serverURI: string;
+  serverPassword?: string;
 }

@@ -1,5 +1,3 @@
-import { WebSocketResponse } from "./WebSocketResponse";
+import { WebSocketResponse } from './WebSocketResponse';
 
-export interface LoginRequiredResponse extends WebSocketResponse{
-	
-}
+export interface LoginRequiredResponse extends WebSocketResponse {}

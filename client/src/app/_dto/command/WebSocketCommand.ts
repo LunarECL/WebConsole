@@ -1,5 +1,5 @@
 export interface WebSocketCommand {
-	command: string;
-	params?: string;
-	token?: string;
+  command: string;
+  params?: string;
+  token?: string;
 }

@@ -8,18 +8,14 @@ import { AddServerComponent } from './add-server/add-server.component';
 import { EditServerComponent } from './edit-server/edit-server.component';
 import { ConsoleComponent } from './console/console.component';
 
-
 @NgModule({
-	declarations: [
-		IndexComponent,
-		SettingsComponent,
-  AddServerComponent,
-  EditServerComponent,
-  ConsoleComponent
-	],
-	imports: [
-		ContentRoutingModule,
-		SharedModule
-	]
+  declarations: [
+    IndexComponent,
+    SettingsComponent,
+    AddServerComponent,
+    EditServerComponent,
+    ConsoleComponent,
+  ],
+  imports: [ContentRoutingModule, SharedModule],
 })
-export class ContentModule { }
+export class ContentModule {}

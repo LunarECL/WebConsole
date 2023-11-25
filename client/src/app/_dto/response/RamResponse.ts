@@ -1,7 +1,7 @@
-import { WebSocketResponse } from "./WebSocketResponse";
+import { WebSocketResponse } from './WebSocketResponse';
 
-export interface RamResponse extends WebSocketResponse{
-	free: number;
-	used: number;
-	max: number;
+export interface RamResponse extends WebSocketResponse {
+  free: number;
+  used: number;
+  max: number;
 }

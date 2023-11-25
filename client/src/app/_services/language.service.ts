@@ -3,21 +3,20 @@ import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from './storage.service';
 
 @Injectable({
-	providedIn: 'root'
+  providedIn: 'root',
 })
 export class LanguageService {
+  constructor(
+    private storageService: StorageService,
+    private translateService: TranslateService,
+  ) {}
 
-	constructor(
-		private storageService: StorageService,
-		private translateService: TranslateService
-	) { }
+  public setLanguage(language: string): void {
+    this.translateService.use(language);
+    this.storageService.setLanguage(language);
+  }
 
-	public setLanguage(language: string): void {
-		this.translateService.use(language);
-		this.storageService.setLanguage(language);
-	}
-
-	public getLanguage(): string {
-		return this.storageService.getLanguage();
-	}
+  public getLanguage(): string {
+    return this.storageService.getLanguage();
+  }
 }

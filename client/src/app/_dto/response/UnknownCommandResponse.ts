@@ -1,5 +1,5 @@
-import { WebSocketResponse } from "./WebSocketResponse";
+import { WebSocketResponse } from './WebSocketResponse';
 
-export interface UnknownCommandResponse extends WebSocketResponse{
-	respondsTo: string;
+export interface UnknownCommandResponse extends WebSocketResponse {
+  respondsTo: string;
 }

@@ -1,6 +1,6 @@
-import { WebSocketResponse } from "./WebSocketResponse";
+import { WebSocketResponse } from './WebSocketResponse';
 
-export interface ConsoleOutputResponse extends WebSocketResponse{
-	time: string;
-	message: string;
+export interface ConsoleOutputResponse extends WebSocketResponse {
+  time: string;
+  message: string;
 }
