@@ -9,6 +9,12 @@
 			<fa-icon *ngIf="showServerInfo" [icon]="icons.faEyeSlash"></fa-icon> {{ "CONSOLE.ToggleServerInfo" | translate }}
 		</button>
 	</div>
+  <div class="col-md-auto d-flex align-items-center">
+    <button type="button" class="btn btn-outline-primary ms-2" *ngIf="showConsole" (click)="toggleWebConsoleLogs()">
+      <fa-icon *ngIf="!showWebConsoleLogs" [icon]="icons.faEye"></fa-icon>
+      <fa-icon *ngIf="showWebConsoleLogs" [icon]="icons.faEyeSlash"></fa-icon> Toggle WebConsole Logs
+    </button>
+  </div>
 </div>
 <span class="badge bg-success me-1" *ngIf="activeConnection.connectionStatus == 2">{{ "CONSOLE.Connected" | translate }}</span>
 <span class="badge bg-danger mb-3" *ngIf="activeConnection.connectionStatus == 3 && showConsole">{{ "CONSOLE.Disconnected" | translate }}</span>

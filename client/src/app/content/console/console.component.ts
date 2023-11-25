@@ -34,6 +34,8 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 	//Content of the console
 	@ViewChild("consoleDiv", { static: false }) consoleDiv!: ElementRef;
 	consoleHtml: string = "";
+	fullConsoleHtml: string = "";
+	filteredConsoleHtml: string = "";
 	//Password modal
 	@ViewChild("setPasswordModal", { static: false }) passwordModal!: ElementRef;
 	//Command input
@@ -50,6 +52,7 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 	//Helper properties
 	keepScrollDown: boolean = true;
 	showServerInfo: boolean = true;
+  showWebConsoleLogs: boolean = true;
 	showConsole: boolean = false;
 	loggedInUsername: string = "";
 	loggedInAs: string = "";
@@ -200,6 +203,25 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 		}
 	}
 
+	scrollToBottom(): void {
+		try {
+			// Use a setTimeout to ensure the DOM has been updated
+			setTimeout(() => {
+				if (this.consoleDiv && this.consoleDiv.nativeElement) {
+					this.consoleDiv.nativeElement.scrollTop = this.consoleDiv.nativeElement.scrollHeight;
+				}
+			}, 0); // Timeout can be adjusted or removed based on your needs
+		} catch (err) {
+			console.error('Scroll to bottom failed:', err);
+		}
+	}
+
+	toggleWebConsoleLogs(): void {
+		this.showWebConsoleLogs = !this.showWebConsoleLogs;
+		this.consoleHtml = this.showWebConsoleLogs ? this.fullConsoleHtml : this.filteredConsoleHtml;
+		this.scrollToBottom()
+	}
+
 	private getColorForLogLevel(logMessage: string): string {
 		// Check if the message starts with the timestamp pattern [12:44:21]
 		const timestampPattern = /^\[\d{2}:\d{2}:\d{2}\]/;
@@ -210,16 +232,20 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 
 		// The log message contains a timestamp, determine its log level and color.
 		let color = '#f0f0f0'; // Default color
+		let base = '#f0f0f0';
 		if (logMessage.includes('ERROR')) {
-			color = '#ff6961'; // Pastel Red
+			color = '#faaca7'; // Pastel Red
+			base = '#ff6961'
 		} else if (logMessage.includes('WARN')) {
 			color = '#ffb347'; // Pastel Orange
+			base = '#ffb347';
 		} else if (logMessage.includes('INFO')) {
 			color = '#77dd77'; // Pastel Green
+			base = '#77dd77';
 		}
 
 		// Store the determined color as the previous color for subsequent usage.
-		this.previousColor = color;
+		this.previousColor = base;
 		return color;
 	}
 
@@ -337,7 +363,16 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 		const spanCount = (msg.match(/<span /g) || []).length; //Number of times a color is applied
 		const spanCloseCount = (msg.match(/<\/span> /g) || []).length; //Number of already existing </span>
 		const numberOfUnclosedSpans: number = spanCount - spanCloseCount; //Number of </span> pending to be closed
-		this.consoleHtml += msg + ("</span>".repeat(numberOfUnclosedSpans)) + "<br>"; //Append to console the message, plus the required </span>'s, plus a line break
+		this.fullConsoleHtml += msg + ("</span>".repeat(numberOfUnclosedSpans)) + "<br>";	// Store every log regardless of filter
+
+		// Check if message should be included in the currently visible console
+		if (!msg.includes('[WebConsole]')) {
+			this.filteredConsoleHtml += msg + ("</span>".repeat(numberOfUnclosedSpans)) + "<br>";
+		}
+
+		// Set consoleHtml to the correct html string based on the toggle state
+		this.consoleHtml = this.showWebConsoleLogs ? this.fullConsoleHtml : this.filteredConsoleHtml;
+		this.scrollToBottom()
 	}
 
 	/**
