@@ -63,7 +63,7 @@
         "ServerAlreadyExist": "이 이름의 서버가 이미 존재합니다"
     },
     "CONSOLE": {
-        "ToggleServerInfo": "서버 정보 전환",
+        "ToggleServerInfo": "서버 정보 토글",
         "Connected": "연결됨",
         "Disconnected": "연결 해제됨",
         "LoggedInAs": "로그인 한 사용자:",
@@ -75,7 +75,7 @@
         "Send": "보내기",
         "Connecting": "연결 중, 잠시만 기다려주세요...",
         "CannotConnect": "서버에 연결할 수 없습니다.",
-        "CannotConnectDescription1": "서버가 실행 중인지, WebConsole 포트가 방화벽과 라우터에 모두 열려 있는지 확인하세요. 이",
+        "CannotConnectDescription1": "서버가 실행 중인지, WebConsole 포트가 방화벽과 라우터에 모두 열려 있는지 확인하세요.",
         "Tool": "도구",
         "CannotConnectDescription2": "를 사용하여 포트 상태를 확인할 수 있습니다.",
         "PasswordRequested": "비밀번호 요청됨",

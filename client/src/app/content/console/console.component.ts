@@ -52,7 +52,6 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 	//Helper properties
 	keepScrollDown: boolean = true;
 	showServerInfo: boolean = true;
-  showWebConsoleLogs: boolean = true;
 	showConsole: boolean = false;
 	loggedInUsername: string = "";
 	loggedInAs: string = "";
@@ -60,6 +59,11 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 	browsingCommandHistoryIndex: number = -1;
 	insightsInverval!: any;
 	previousColor: string = '#f0f0f0';
+
+	// Filtering variables
+	filterOption: 'contains' | 'not-contains' = 'contains';
+	filterText: string = '';
+	caseSensitive: boolean = false;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -216,10 +220,26 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 		}
 	}
 
-	toggleWebConsoleLogs(): void {
-		this.showWebConsoleLogs = !this.showWebConsoleLogs;
-		this.consoleHtml = this.showWebConsoleLogs ? this.fullConsoleHtml : this.filteredConsoleHtml;
-		this.scrollToBottom()
+	applyFilter(): void {
+		// Normalize the text for case-insensitive comparisons if needed
+		const normalizedFilterText = this.caseSensitive ? this.filterText : this.filterText.toLowerCase();
+
+		// Update the filteredConsoleHtml based on the selected filter option and filter text
+		const lines = this.fullConsoleHtml.split('<br>');
+		const filteredLines = lines.filter((line) => {
+			// Normalize the line for case-insensitive comparisons if needed
+			const normalizedLine = this.caseSensitive ? line : line.toLowerCase();
+
+			if (this.filterOption === 'contains') {
+				return normalizedLine.includes(normalizedFilterText);
+			} else if (this.filterOption === 'not-contains') {
+				return !normalizedLine.includes(normalizedFilterText);
+			}
+			return true;
+		});
+		this.filteredConsoleHtml = filteredLines.join('<br>');
+		this.consoleHtml = this.filteredConsoleHtml; // Update the display with the filtered results
+		this.scrollToBottom(); // Scroll to the bottom if needed
 	}
 
 	private getColorForLogLevel(logMessage: string): string {
@@ -363,15 +383,8 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 		const spanCount = (msg.match(/<span /g) || []).length; //Number of times a color is applied
 		const spanCloseCount = (msg.match(/<\/span> /g) || []).length; //Number of already existing </span>
 		const numberOfUnclosedSpans: number = spanCount - spanCloseCount; //Number of </span> pending to be closed
-		this.fullConsoleHtml += msg + ("</span>".repeat(numberOfUnclosedSpans)) + "<br>";	// Store every log regardless of filter
+		this.consoleHtml += msg + ("</span>".repeat(numberOfUnclosedSpans)) + "<br>";	// Store every log regardless of filter
 
-		// Check if message should be included in the currently visible console
-		if (!msg.includes('[WebConsole]')) {
-			this.filteredConsoleHtml += msg + ("</span>".repeat(numberOfUnclosedSpans)) + "<br>";
-		}
-
-		// Set consoleHtml to the correct html string based on the toggle state
-		this.consoleHtml = this.showWebConsoleLogs ? this.fullConsoleHtml : this.filteredConsoleHtml;
 		this.scrollToBottom()
 	}
 

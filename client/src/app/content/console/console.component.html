@@ -9,12 +9,6 @@
 			<fa-icon *ngIf="showServerInfo" [icon]="icons.faEyeSlash"></fa-icon> {{ "CONSOLE.ToggleServerInfo" | translate }}
 		</button>
 	</div>
-  <div class="col-md-auto d-flex align-items-center">
-    <button type="button" class="btn btn-outline-primary ms-2" *ngIf="showConsole" (click)="toggleWebConsoleLogs()">
-      <fa-icon *ngIf="!showWebConsoleLogs" [icon]="icons.faEye"></fa-icon>
-      <fa-icon *ngIf="showWebConsoleLogs" [icon]="icons.faEyeSlash"></fa-icon> Toggle WebConsole Logs
-    </button>
-  </div>
 </div>
 <span class="badge bg-success me-1" *ngIf="activeConnection.connectionStatus == 2">{{ "CONSOLE.Connected" | translate }}</span>
 <span class="badge bg-danger mb-3" *ngIf="activeConnection.connectionStatus == 3 && showConsole">{{ "CONSOLE.Disconnected" | translate }}</span>
@@ -78,6 +72,27 @@
 			</button>
 		</div>
 	</div>
+
+  <!-- The filter UI block -->
+  <div class="row mb-3">
+    <div class="col-12 col-md-4">
+      <select class="form-select" [(ngModel)]="filterOption" (ngModelChange)="applyFilter()">
+        <option value="contains">Show lines that contain</option>
+        <option value="not-contains">Show lines that do not contain</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-4">
+      <input type="text" class="form-control" placeholder="Enter filter text"
+             [(ngModel)]="filterText" (ngModelChange)="applyFilter()">
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="caseSensitivitySwitch"
+               [(ngModel)]="caseSensitive" (ngModelChange)="applyFilter()">
+        <label class="form-check-label" for="caseSensitivitySwitch">Case Sensitive</label>
+      </div>
+    </div>
+  </div>
 
 
 	<!-- Console -->
