@@ -3,14 +3,14 @@
 		"Server": "服务器",
 		"Loading": "正在加载..."
 	},
-    "LAYOUT": {
-        "Home": "主页面",
+		"LAYOUT": {
+				"Home": "主页面",
 		"Settings": "设置",
 		"Navigation": "导航",
 		"CurrentlyConnectedTo": "当前连接的服务器",
 		"NoConnectedToServers": "您当前未连接到任何服务器。",
 		"Disconnect": "断开连接"
-    },
+		},
 	"HOME": {
 		"YourServers": "服务器列表",
 		"NoServersAdded": "您还没有添加任何服务器。使用此页面右上角的按钮添加您的第一个。此外，请查看设置页面以完成自定义 WebConsole。",
@@ -81,6 +81,10 @@
 		"PasswordRequested": "要求密码",
 		"WrongPassword": "密码错误。再试一次。",
 		"RememberPassword": "记住密码",
-		"Connect": "连接"
+		"Connect": "连接",
+		"FilterOption1": "显示包含以下内容的行",
+		"FilterOption2": "显示不包含以下内容的行",
+		"FilterText": "输入过滤文字",
+		"FilterCaseSensitive": "区分大小写"
 	}
 }

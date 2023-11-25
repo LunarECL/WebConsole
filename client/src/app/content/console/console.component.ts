@@ -221,6 +221,13 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	applyFilter(): void {
+		// Check if filter text is empty and display the full console HTML if so
+		if (!this.filterText.trim()) {
+			this.consoleHtml = this.fullConsoleHtml;
+			this.scrollToBottom();
+			return;
+		}
+
 		// Normalize the text for case-insensitive comparisons if needed
 		const normalizedFilterText = this.caseSensitive ? this.filterText : this.filterText.toLowerCase();
 
@@ -383,9 +390,16 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 		const spanCount = (msg.match(/<span /g) || []).length; //Number of times a color is applied
 		const spanCloseCount = (msg.match(/<\/span> /g) || []).length; //Number of already existing </span>
 		const numberOfUnclosedSpans: number = spanCount - spanCloseCount; //Number of </span> pending to be closed
-		this.consoleHtml += msg + ("</span>".repeat(numberOfUnclosedSpans)) + "<br>";	// Store every log regardless of filter
+		this.fullConsoleHtml += msg + ("</span>".repeat(numberOfUnclosedSpans)) + "<br>";	// Store every log regardless of filter
 
-		this.scrollToBottom()
+		if (!this.filterText.trim()) {
+			this.consoleHtml += msg + "<br>";
+			this.scrollToBottom();
+		}
+		// If a filter is applied, call applyFilter to update the console
+		else {
+			this.applyFilter();
+		}
 	}
 
 	/**

@@ -77,19 +77,19 @@
   <div class="row mb-3">
     <div class="col-12 col-md-4">
       <select class="form-select" [(ngModel)]="filterOption" (ngModelChange)="applyFilter()">
-        <option value="contains">Show lines that contain</option>
-        <option value="not-contains">Show lines that do not contain</option>
+        <option value="contains"> {{ "CONSOLE.FilterOption1" | translate }} </option>
+        <option value="not-contains"> {{ "CONSOLE.FilterOption2" | translate }} </option>
       </select>
     </div>
     <div class="col-12 col-md-4">
-      <input type="text" class="form-control" placeholder="Enter filter text"
+      <input type="text" class="form-control" placeholder="{{ 'CONSOLE.FilterText' | translate }}"
              [(ngModel)]="filterText" (ngModelChange)="applyFilter()">
     </div>
     <div class="col-12 col-md-4">
       <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" id="caseSensitivitySwitch"
                [(ngModel)]="caseSensitive" (ngModelChange)="applyFilter()">
-        <label class="form-check-label" for="caseSensitivitySwitch">Case Sensitive</label>
+        <label class="form-check-label" for="caseSensitivitySwitch"> {{ "CONSOLE.FilterCaseSensitive" | translate }} </label>
       </div>
     </div>
   </div>

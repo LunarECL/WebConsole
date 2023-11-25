@@ -3,14 +3,14 @@
 		"Server": "Server",
 		"Loading": "Laster..."
 	},
-    "LAYOUT": {
-        "Home": "Hjem",
+		"LAYOUT": {
+				"Home": "Hjem",
 		"Settings": "Innstillinger",
 		"Navigation": "Navigasjon",
 		"CurrentlyConnectedTo": "Tilkoblede servere",
 		"NoConnectedToServers": "Du er for øyeblikket ikke koblet til noen server.",
 		"Disconnect": "Koblet fra"
-    },
+		},
 	"HOME": {
 		"YourServers": "Dine lagrede servere",
 		"NoServersAdded": "Du har ingen servere lagt til ennå. Legg til den første ved hjelp av knappen øverst til høyre på denne siden. Sjekk også ut innstillingene for å fullføre tilpasningen av WebConsole.",
@@ -81,6 +81,10 @@
 		"PasswordRequested": "Passord forespurt",
 		"WrongPassword": "Feil passord. Prøv igjen.",
 		"RememberPassword": "Husk passord",
-		"Connect": "Koble til"
+		"Connect": "Koble til",
+		"FilterOption1": "Vis linjer som inneholder",
+		"FilterOption2": "Vis linjer som ikke inneholder",
+		"FilterText": "Skriv inn filtertekst",
+		"FilterCaseSensitive": "Skill mellom store og små bokstaver"
 	}
 }

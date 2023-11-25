@@ -3,14 +3,14 @@
 		"Server": "Server",
 		"Loading": "Loading..."
 	},
-    "LAYOUT": {
-        "Home": "Home",
+		"LAYOUT": {
+				"Home": "Home",
 		"Settings": "Settings",
 		"Navigation": "Navigation",
 		"CurrentlyConnectedTo": "Currently connected servers",
 		"NoConnectedToServers": "You are currently not connected to any server.",
 		"Disconnect": "Disconnect"
-    },
+		},
 	"HOME": {
 		"YourServers": "Your saved servers",
 		"NoServersAdded": "You have no servers added yet. Add your first one using the button on the top right of this page. Also, check out the settings page to finish customizing WebConsole.",
@@ -81,6 +81,10 @@
 		"PasswordRequested": "Password Requested",
 		"WrongPassword": "Wrong password. Try again.",
 		"RememberPassword": "Remember password",
-		"Connect": "Connect"
+		"Connect": "Connect",
+		"FilterOption1": "Show lines that contain",
+		"FilterOption2": "Show lines that do not contain",
+		"FilterText": "Enter filter text",
+		"FilterCaseSensitive": "Case Sensitive"
 	}
 }

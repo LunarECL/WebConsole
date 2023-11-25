@@ -3,14 +3,14 @@
 		"Server": "Serveur",
 		"Loading": "Chargement en cours..."
 	},
-    "LAYOUT": {
-        "Home": "Accueil",
+		"LAYOUT": {
+				"Home": "Accueil",
 		"Settings": "Paramètres",
 		"Navigation": "Navigation",
 		"CurrentlyConnectedTo": "Actuellement connecté aux serveurs",
 		"NoConnectedToServers": "Vous n'êtes actuellement connecté à aucun serveur.",
 		"Disconnect": "Déconnexion"
-    },
+		},
 	"HOME": {
 		"YourServers": "Vos serveurs enregistrés",
 		"NoServersAdded": "Vous n'avez encore ajouté aucun serveur. Ajoutez le premier en utilisant le bouton en haut à droite de cette page. De plus, consultez la page des paramètres pour personnaliser davantage WebConsole.",
@@ -81,6 +81,10 @@
 		"PasswordRequested": "Mot de passe requis",
 		"WrongPassword": "Mot de passe incorrect. Réessayez.",
 		"RememberPassword": "Mémoriser le mot de passe",
-		"Connect": "Connecter"
+		"Connect": "Connecter",
+		"FilterOption1": "Afficher les lignes qui contiennent",
+		"FilterOption2": "Afficher les lignes qui ne contiennent pas",
+		"FilterText": "Entrez le texte du filtre",
+		"FilterCaseSensitive": "Sensible à la casse"
 	}
 }

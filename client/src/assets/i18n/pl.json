@@ -3,14 +3,14 @@
 		"Server": "Serwer",
 		"Loading": "Wczytywanie..."
 	},
-    "LAYOUT": {
-        "Home": "Strona główna",
+		"LAYOUT": {
+				"Home": "Strona główna",
 		"Settings": "Ustawienia",
 		"Navigation": "Nawigacja",
 		"CurrentlyConnectedTo": "Aktualnie połączone serwery",
 		"NoConnectedToServers": "Nie jesteś aktualnie połączony z żadnym serwerem.",
 		"Disconnect": "Rozłącz"
-    },
+		},
 	"HOME": {
 		"YourServers": "Twoje zapisane serwery",
 		"NoServersAdded": "Nie masz jeszcze żadnych zapisanych serwerów. Dodaj swój pierwszy serwer za pomocą przycisku w prawym górnym rogu tej strony. Poza tym, zajrzyj do ustawień aby ukończyć personalizowanie WebConsole.",
@@ -81,6 +81,10 @@
 		"PasswordRequested": "Zażądano hasła",
 		"WrongPassword": "Nieprawidłowe hasło. Spróbuj ponownie.",
 		"RememberPassword": "Zapamiętaj hasło",
-		"Connect": "Połącz"
+		"Connect": "Połącz",
+		"FilterOption1": "Pokaż linie zawierające",
+		"FilterOption2": "Pokaż linie nie zawierające",
+		"FilterText": "Wpisz tekst filtra",
+		"FilterCaseSensitive": "Rozróżnianie wielkości liter"
 	}
 }
