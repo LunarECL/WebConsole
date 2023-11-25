@@ -56,6 +56,7 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 	savedPasswordSent: boolean = false;
 	browsingCommandHistoryIndex: number = -1;
 	insightsInverval!: any;
+	previousColor: string = '#f0f0f0';
 
 	constructor(
 		private route: ActivatedRoute,
@@ -199,6 +200,29 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 		}
 	}
 
+	private getColorForLogLevel(logMessage: string): string {
+		// Check if the message starts with the timestamp pattern [12:44:21]
+		const timestampPattern = /^\[\d{2}:\d{2}:\d{2}\]/;
+		if (!timestampPattern.test(logMessage)) {
+			// The log message does not start with a timestamp, use the previous color.
+			return this.previousColor;
+		}
+
+		// The log message contains a timestamp, determine its log level and color.
+		let color = '#f0f0f0'; // Default color
+		if (logMessage.includes('ERROR')) {
+			color = '#ff6961'; // Pastel Red
+		} else if (logMessage.includes('WARN')) {
+			color = '#ffb347'; // Pastel Orange
+		} else if (logMessage.includes('INFO')) {
+			color = '#77dd77'; // Pastel Green
+		}
+
+		// Store the determined color as the previous color for subsequent usage.
+		this.previousColor = color;
+		return color;
+	}
+
 	/**
 	 * Sanitize and print message to console
 	 * @param msg Message to print
@@ -206,6 +230,9 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	private writeToWebConsole(msg: string, time: string) {
 		this.keepScrollDown = this.consoleDiv?.nativeElement.scrollHeight - this.consoleDiv?.nativeElement.scrollTop === this.consoleDiv?.nativeElement.clientHeight;
+
+		// Determine the color for the log level
+		const logColor = this.getColorForLogLevel(msg);
 
 		//Write to div, replacing < to &lt; (to avoid XSS) and replacing new line to br.
 		msg = msg.replace(/</g, "&lt;");
@@ -279,6 +306,22 @@ export class ConsoleComponent implements OnInit, AfterViewInit, OnDestroy {
 		msg = msg.replace(/o/g, "<span style='font-style: italic;'>"); //&o
 
 		msg = msg.replace(/r/g, "</span>");  //&r
+
+		// Wrap the entire message with a color span if a specific log level color was found
+		if (logColor !== '') {
+			const endOfLevelIndex = msg.indexOf(']:') + 1; // Find the index of the character right after the first colon
+			if (endOfLevelIndex > 0 && msg.includes('INFO')) {
+				// Apply only if it's an INFO message and a colon is present
+				const beforeColon = msg.slice(0, endOfLevelIndex); // Everything up to and including the colon
+				const afterColon = msg.slice(endOfLevelIndex); // Everything after the colon
+
+				// Wrap beforeColon in a span with the logColor, and start a new span with the default color for afterColon
+				msg = `<span style='color: ${logColor};'>${beforeColon}</span><span style='color: white;'>${afterColon}</span>`;
+			} else {
+				// Wrap entire message in a span with the logColor if it's not an INFO level message or no colon is present
+				msg = `<span style='color: ${logColor};'>${msg}</span>`;
+			}
+		}
 
 		//Append datetime if enabled
 		if (this.storageService.getSetting(SettingsEnum.DateTimePrefix)) {
